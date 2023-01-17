@@ -207,10 +207,10 @@ public class DeltaRepositoryCallback extends AbstractRepositoryCallback<RemoteRe
      */
     private String getFileContent(final ObjectId fileId, final Repository repository) throws IOException {
         try (ObjectDatabase objectDatabase = repository.getObjectDatabase()) {
-            ObjectLoader objectLoader = objectDatabase.open(fileId);
+        ObjectLoader objectLoader = objectDatabase.open(fileId);
 
-            return new String(objectLoader.getCachedBytes(), StandardCharsets.UTF_8);
-        }
+            return new String(objectLoader.getCachedBytes(Integer.MAX_VALUE), StandardCharsets.UTF_8);
+      }
     }
 
     /**
